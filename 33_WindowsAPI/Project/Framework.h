@@ -27,6 +27,7 @@ using namespace std;
 #include "Shape.h"
 #include "Circle.h"
 #include "Rect.h"
+#include "Mino.h"
 
 #include "Scene.h"
 #include "PaintScene.h"
