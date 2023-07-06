@@ -25,6 +25,9 @@
     <Filter Include="Util">
       <UniqueIdentifier>{8f6dc589-3443-459b-9b5f-b3073aec99f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Tetris_Mino">
+      <UniqueIdentifier>{be34f927-0ab2-4520-8362-9bd800a7bc9d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework.h">
@@ -72,6 +75,9 @@
     <ClInclude Include="TetrisScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Mino.h">
+      <Filter>Object\Tetris_Mino</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -109,6 +115,9 @@
     </ClCompile>
     <ClCompile Include="TetrisScene.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Mino.cpp">
+      <Filter>Object\Tetris_Mino</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
