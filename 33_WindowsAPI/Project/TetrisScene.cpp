@@ -69,10 +69,10 @@ void TetrisScene::Render(HDC hdc)
 	}
 
 	// Rendering currentMino
-	for (const Coord& coord : currentMino.GetCurrentCoords())
+	for (const Coord& relativeCoord : currentMino.GetCurrentCoords())
 	{
-		Point pos = ArrayPosToWorldPos(currentMino.GetMainPos().x + coord.x, currentMino.GetMainPos().y + coord.y);
-
+		Coord coord = { currentMino.GetMainPos().x + relativeCoord.x, currentMino.GetMainPos().y + relativeCoord.y };
+		Point pos = ArrayPosToWorldPos(coord.x, coord.y);
 		Rect r = Rect(pos, Point(RECT_SIZE, RECT_SIZE), currentMino.GetType(), brushMap[currentMino.GetType()]);
 
 		r.Render(hdc);
@@ -130,5 +130,5 @@ Mino TetrisScene::GenerateMino()
 {
 	BlockType t = (BlockType)(rand() % 7);
 
-	return Mino(t, Coord(5, 0));
+	return Mino(t, Coord(5, 2));
 }

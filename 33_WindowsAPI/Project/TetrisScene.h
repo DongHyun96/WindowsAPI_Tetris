@@ -17,12 +17,12 @@ private:
 	
 	map<BlockType, HBRUSH> brushMap =
 	{
-		{I_MINO,	CreateSolidBrush(RGB(150, 40, 180))},
-		{Z_MINO,	CreateSolidBrush(RGB(128, 128, 0))},
+		{I_MINO,	CreateSolidBrush(RGB(0, 255, 255))},
+		{Z_MINO,	CreateSolidBrush(RGB(255, 255, 0))},
 		{N_MINO,	CreateSolidBrush(RGB(128, 0, 128))},
-		{O_MINO,	CreateSolidBrush(RGB(0, 128, 0))},
-		{J_MINO,	CreateSolidBrush(RGB(128, 0, 0))},
-		{L_MINO,	CreateSolidBrush(RGB(0, 0, 128))},
+		{O_MINO,	CreateSolidBrush(RGB(0, 255, 0))},
+		{J_MINO,	CreateSolidBrush(RGB(255, 0, 0))},
+		{L_MINO,	CreateSolidBrush(RGB(0, 0, 255))},
 		{T_MINO,	CreateSolidBrush(RGB(255, 127, 0))},
 		{WALL,		CreateSolidBrush(RGB(125, 125, 125))},
 		{NONE,		CreateSolidBrush(RGB(255, 255, 255))},
