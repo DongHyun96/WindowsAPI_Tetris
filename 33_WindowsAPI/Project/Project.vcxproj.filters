@@ -78,6 +78,9 @@
     <ClInclude Include="Mino.h">
       <Filter>Object\Tetris_Mino</Filter>
     </ClInclude>
+    <ClInclude Include="Coord.h">
+      <Filter>Object\Tetris_Mino</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -117,6 +120,9 @@
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="Mino.cpp">
+      <Filter>Object\Tetris_Mino</Filter>
+    </ClCompile>
+    <ClCompile Include="Coord.cpp">
       <Filter>Object\Tetris_Mino</Filter>
     </ClCompile>
   </ItemGroup>

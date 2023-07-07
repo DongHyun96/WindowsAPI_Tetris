@@ -138,6 +138,7 @@
     <ClInclude Include="AvoidingGameScene.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="CollisionScene.h" />
+    <ClInclude Include="Coord.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="MainGame.h" />
@@ -156,6 +157,7 @@
     <ClCompile Include="AvoidingGameScene.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="CollisionScene.cpp" />
+    <ClCompile Include="Coord.cpp" />
     <ClCompile Include="Framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

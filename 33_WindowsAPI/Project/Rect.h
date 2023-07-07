@@ -1,17 +1,5 @@
 #pragma once
 
-enum BlockType
-{
-	I_MINO,
-	Z_MINO,
-	N_MINO,
-	O_MINO,
-	J_MINO,
-	L_MINO,
-	T_MINO,
-	WALL,
-	NONE
-};
 
 class Rect : public Shape
 {
@@ -33,6 +21,9 @@ public:
 	float Right()	const override	{ return pos.x + size.x * 0.5f; }
 	float Top()		const override	{ return pos.y - size.y * 0.5f; }
 	float Bottom()	const override	{ return pos.y + size.y * 0.5f; }
+
+	void SetType(const BlockType& type) { this->type = type; }
+	BlockType GetType() const { return type; }
 
 private:
 	Point size	= {}; // width height
