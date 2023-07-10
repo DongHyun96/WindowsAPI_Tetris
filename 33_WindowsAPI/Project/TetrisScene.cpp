@@ -217,12 +217,12 @@ void TetrisScene::UpdateMadeRows()
 		}
 	}
 
-	// madeRows -> 4 6 7 10 이런 순
-	for (int y = BOARD_HEIGHT - 1; y >= 4; y--)
+	 //madeRows -> 4 6 7 10 이런 순
+	for (int y = BOARD_HEIGHT - 2; y >= 4; y--)
 	{
 		auto it = find(madeRows.begin(), madeRows.end(), y);
 
-		if (it != madeRows.end()) // 만일 madeRows라면 continue
+		if (it != madeRows.end()) // 만일 현재 y가 madeRow라면 continue
 			continue;
 
 		// 자신의 아래로 만들어진 row의 개수를 파악
@@ -232,12 +232,13 @@ void TetrisScene::UpdateMadeRows()
 			if (y < row)
 				madeCnt++;
 		}
-
+		
 		// 아래의 만들어진 row만큼 아래로 내림
 		for (int x = 1; x < BOARD_WIDTH - 1; x++)
 		{
-			board[y - madeCnt][x] = board[y][x];
+			board[y + madeCnt][x] = board[y][x];
 
+			// 원래의 자리는 none으로 만듦
 			Point pos = ArrayPosToWorldPos(x, y);
 			board[y][x] = Rect(pos, Point(RECT_SIZE, RECT_SIZE), NONE, brushMap[NONE]);
 		}
