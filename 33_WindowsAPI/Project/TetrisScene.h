@@ -1,5 +1,11 @@
 #pragma once
 
+enum GameState
+{
+	IDLE,
+	ROW_MADE,
+	GAME_OVER
+};
 
 class TetrisScene : public Scene
 {
@@ -15,6 +21,8 @@ public:
 
 private:
 	
+	GameState gameState = IDLE;
+
 	map<BlockType, HBRUSH> brushMap =
 	{
 		{I_MINO,	CreateSolidBrush(RGB(0, 255, 255))},
@@ -28,8 +36,11 @@ private:
 		{NONE,		CreateSolidBrush(RGB(255, 255, 255))},
 	};
 	
-	float baseTick	 = 0;
-	float playerTick = 0;
+	HBRUSH flickerBrush = CreateSolidBrush(RGB(255, 255, 255));
+	
+	float baseTick		= 0;
+	float playerTick	= 0;
+	float rowMadeTick	= 0;
 
 	bool leftKeyPressed		= false;
 	bool rightKeyPressed	= false;
@@ -39,6 +50,8 @@ private:
 	
 	Rect board[BOARD_HEIGHT][BOARD_WIDTH] = {};
 	
+	vector<int> madeRows = {};
+
 	Mino currentMino;
 
 	/// <param name="arrayPos"> Point( [y], [x] )</param>
@@ -46,6 +59,10 @@ private:
 	Point ArrayPosToWorldPos(int x, int y);
 
 	void HandlePlayerInput(float deltaTime);
+
+	void CheckBoardMade();
+	void ChangeRowColor(bool isOwnColor);
+	void UpdateMadeRows();
 
 	Mino GenerateMino();
 

@@ -11,6 +11,8 @@ public:
 	void UpdatePos();
 	bool DeleteIfOutOfRange();
 
+	void SetBrush(HBRUSH brush) { this->brush = brush; }
+
 	virtual void Render(HDC hdc); // 펜과 브러쉬 잡기
 
 	virtual float Left()	const = 0;

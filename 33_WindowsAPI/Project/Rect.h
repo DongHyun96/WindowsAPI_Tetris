@@ -24,7 +24,8 @@ public:
 
 	void SetType(const BlockType& type) { this->type = type; }
 	BlockType GetType() const { return type; }
-
+	
+	
 private:
 	Point size	= {}; // width height
 

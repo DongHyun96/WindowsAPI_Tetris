@@ -14,6 +14,7 @@
 #include <map>
 #include <string>
 #include <time.h>
+#include <algorithm>
 
 using namespace std;
 
@@ -26,6 +27,7 @@ using namespace std;
 #define BOARD_WIDTH			12
 #define BASE_TICK_LIMIT		1 // base tick은 1초
 #define PLAYER_TICK_LIMIT	0.03f // player tick은 0.2초
+#define ROW_MADE_TICK_LIMIT 1.f
 
 
 #include "Util.h"
