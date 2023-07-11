@@ -1,5 +1,11 @@
 #pragma once
 
+#define STACKING_SCORE	20
+#define SINGLE_SCORE	100
+#define DOUBLE_SCORE	300
+#define TRIPLE_SCORE	500
+#define TETRIS_SCORE	800
+
 enum GameState
 {
 	IDLE,

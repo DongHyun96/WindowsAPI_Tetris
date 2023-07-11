@@ -56,6 +56,24 @@ void TetrisScene::Update()
 		{
 			// Update board and add score here
 			UpdateMadeRows();
+			
+			switch (madeRows.size())
+			{
+			case 1:
+				score += SINGLE_SCORE;
+				break;
+			case 2:
+				score += DOUBLE_SCORE;
+				break;
+			case 3:
+				score += TRIPLE_SCORE;
+				break;
+			case 4:
+				score += TETRIS_SCORE;
+				break;
+			default:
+				break;
+			}
 
 			rowMadeTick = 0;
 			madeRows.clear();
@@ -75,6 +93,9 @@ void TetrisScene::Update()
 
 	if (!isMovable) // Mino reached the end
 	{
+		// Add stacking score
+		score += STACKING_SCORE;
+
 		// Fix mino in the board
 		for (const Coord& relativeCoord : currentMino.GetCurrentCoords())
 		{
