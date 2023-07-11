@@ -16,6 +16,8 @@
 #include <time.h>
 #include <algorithm>
 
+#include <mmsystem.h>
+
 using namespace std;
 
 #define WIN_WIDTH	720.f

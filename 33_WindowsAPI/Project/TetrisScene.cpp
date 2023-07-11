@@ -21,6 +21,8 @@ TetrisScene::TetrisScene()
 	nextMino	= GenerateMino();
 	
 	tetrisUI	= TetrisUI();
+
+	PlaySound(TEXT("TetrisMainTheme.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP | SND_NODEFAULT);
 }
 
 TetrisScene::~TetrisScene()
@@ -34,6 +36,12 @@ TetrisScene::~TetrisScene()
 void TetrisScene::Update()
 {
 	float deltaTime = GetDeltaTime();
+	
+	if (gameState != GAME_OVER && paused)
+	{
+		HandlePlayerInput(deltaTime);
+		return;
+	}
 
 	if (gameState == GAME_OVER)
 	{
@@ -142,6 +150,13 @@ void TetrisScene::Render(HDC hdc)
 
 		r.Render(hdc);
 	}
+
+	if (paused)
+	{
+		SetTextColor(hdc, RGB(255, 0, 0));
+		wsprintf(lpOut, TEXT("PAUSED"));
+		TextOut(hdc, 500, 500, lpOut, lstrlen(lpOut));
+	}
 }
 
 Point TetrisScene::ArrayPosToWorldPos(int x, int y)
@@ -151,6 +166,24 @@ Point TetrisScene::ArrayPosToWorldPos(int x, int y)
 
 void TetrisScene::HandlePlayerInput(float deltaTime)
 {
+	static bool pPressed = false;
+
+	if (GetAsyncKeyState('P'))
+	{
+		if (!pPressed)
+		{
+			paused = !paused;
+
+			pPressed = true;
+		}
+
+		return; // Do not handle other key input while paused
+	}
+	else pPressed = false;
+
+	if (paused) // Do not handle other key input while paused
+		return;
+
 	if (GetAsyncKeyState(VK_DOWN))
 	{
 		if (playerTick >= PLAYER_TICK_LIMIT)

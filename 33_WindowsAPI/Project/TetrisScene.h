@@ -1,4 +1,5 @@
 #pragma once
+#pragma comment(lib,"winmm.lib")
 
 #define STACKING_SCORE	20
 #define SINGLE_SCORE	100
@@ -44,6 +45,8 @@ private:
 private:
 	
 	GameState gameState = IDLE;
+
+	bool paused	= false;
 
 	map<BlockType, HBRUSH> brushMap =
 	{

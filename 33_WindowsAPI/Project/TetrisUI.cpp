@@ -38,6 +38,14 @@ void TetrisUI::Render(HDC hdc)
 
 		wsprintf(lpOut, TEXT("GAME OVER!"));
 		TextOut(hdc, nextMinoBoard.Pos().x, nextMinoBoard.Pos().y, lpOut, lstrlen(lpOut));
+
+		wsprintf(lpOut, TEXT("==FINAL SCORE=="));
+		TextOut(hdc, nextMinoBoard.Pos().x, nextMinoBoard.Pos().y + 40, lpOut, lstrlen(lpOut));
+
+		SetTextColor(hdc, RGB(255, 0, 0));
+		TextOut(hdc, nextMinoBoard.Pos().x, nextMinoBoard.Pos().y + 80, to_wstring(score).c_str(), to_wstring(score).size());
+
+
 		return;
 	}
 
