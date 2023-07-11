@@ -151,6 +151,7 @@
     <ClInclude Include="Shape.h" />
     <ClInclude Include="Targetver.h" />
     <ClInclude Include="TetrisScene.h" />
+    <ClInclude Include="TetrisUI.h" />
     <ClInclude Include="Util.h" />
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +173,7 @@
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="TetrisScene.cpp" />
+    <ClCompile Include="TetrisUI.cpp" />
     <ClCompile Include="Util.cpp" />
   </ItemGroup>
   <ItemGroup>

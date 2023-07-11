@@ -18,6 +18,9 @@ TetrisScene::TetrisScene()
 	}
 
 	currentMino = GenerateMino();
+	nextMino	= GenerateMino();
+	
+	tetrisUI	= TetrisUI();
 }
 
 TetrisScene::~TetrisScene()
@@ -35,10 +38,8 @@ void TetrisScene::Update()
 	if (gameState == GAME_OVER)
 	{
 		// Game Over
+		return;
 	}
-
-	// Check board made
-	CheckBoardMade();
 
 	// Currently Row_Made, update the color
 	if (gameState == ROW_MADE)
@@ -82,16 +83,28 @@ void TetrisScene::Update()
 			board[coord.y][coord.x] = Rect(pos, Point(RECT_SIZE, RECT_SIZE), currentMino.GetType(), brushMap[currentMino.GetType()]);
 		}
 
-		// Generate random mino to current mino
-		currentMino = GenerateMino();
+		// Generate random mino to nextMino and update current mino
+		currentMino = nextMino;
+		nextMino	= GenerateMino();
+
 		isMovable = true;
 	}
+
+	UpdateGameState();
+
+	if (gameState == ROW_MADE)
+		tetrisUI.UpdateUIState(score, currentMino, brushMap[currentMino.GetType()], gameState == GAME_OVER);
+	else
+		tetrisUI.UpdateUIState(score, nextMino, brushMap[nextMino.GetType()], gameState == GAME_OVER);
 
 	baseTick += deltaTime;
 }
 
 void TetrisScene::Render(HDC hdc)
 {
+	// Rendering UI
+	tetrisUI.Render(hdc);
+
 	// Rendering board
 	for (int i = 0; i < BOARD_HEIGHT; i++)
 	{
@@ -157,8 +170,18 @@ void TetrisScene::HandlePlayerInput(float deltaTime)
 		upKeyPressed = false;
 }
 
-void TetrisScene::CheckBoardMade()
+void TetrisScene::UpdateGameState()
 {
+	// Check GameOver
+	for (int i = 1; i < BOARD_WIDTH - 1; i++)
+	{
+		if (board[3][i].GetType() != NONE)
+		{
+			gameState = GAME_OVER;
+			break;
+		}
+	}
+
 	madeRows.clear();
 
 	for (int y = 4; y < BOARD_HEIGHT - 1; y++)
@@ -233,11 +256,16 @@ void TetrisScene::UpdateMadeRows()
 				madeCnt++;
 		}
 		
+		if (madeCnt == 0) // 자신의 아래로 만들어진 row가 없다면 넘어감
+			continue;
+		
 		// 아래의 만들어진 row만큼 아래로 내림
 		for (int x = 1; x < BOARD_WIDTH - 1; x++)
 		{
-			board[y + madeCnt][x] = board[y][x];
-
+			// Type과 Brush를 바꿔줌
+			board[y + madeCnt][x].SetType(board[y][x].GetType());
+			board[y + madeCnt][x].SetBrush(brushMap[board[y][x].GetType()]);
+				
 			// 원래의 자리는 none으로 만듦
 			Point pos = ArrayPosToWorldPos(x, y);
 			board[y][x] = Rect(pos, Point(RECT_SIZE, RECT_SIZE), NONE, brushMap[NONE]);

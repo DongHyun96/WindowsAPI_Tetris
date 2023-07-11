@@ -22,8 +22,12 @@ public:
 	float Top()		const override	{ return pos.y - size.y * 0.5f; }
 	float Bottom()	const override	{ return pos.y + size.y * 0.5f; }
 
+	Point& Pos() { return pos; }
+
 	void SetType(const BlockType& type) { this->type = type; }
 	BlockType GetType() const { return type; }
+
+	Point GetSize() const { return size; }
 	
 	
 private:

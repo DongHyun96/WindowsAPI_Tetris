@@ -18,15 +18,15 @@
 
 using namespace std;
 
-#define WIN_WIDTH	1280.f
+#define WIN_WIDTH	720.f
 #define WIN_HEIGHT	720.f
 
 // Tetris define 값
 #define RECT_SIZE			30.f
 #define BOARD_HEIGHT		24
 #define BOARD_WIDTH			12
-#define BASE_TICK_LIMIT		1 // base tick은 1초
-#define PLAYER_TICK_LIMIT	0.03f // player tick은 0.2초
+#define BASE_TICK_LIMIT		1		// base tick은 1초
+#define PLAYER_TICK_LIMIT	0.03f	// player tick은 0.2초
 #define ROW_MADE_TICK_LIMIT 1.f
 
 
@@ -40,6 +40,8 @@ using namespace std;
 #include "Mino.h"
 #include "Rect.h"
 
+#include "TetrisUI.h"
+
 #include "Scene.h"
 #include "PaintScene.h"
 #include "CollisionScene.h"
@@ -51,3 +53,4 @@ using namespace std;
 // extern - 전역변수를 뿌려주는 키워드
 extern HWND hWnd; // 어딘가 이게 있으니 여기에 전방선언 한다
 extern Point mousePos;
+extern TCHAR lpOut[1024];

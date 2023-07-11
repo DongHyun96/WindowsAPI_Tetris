@@ -12,6 +12,8 @@ MainGame* mainGame = nullptr;
 
 HWND hWnd;
 
+TCHAR lpOut[1024];
+
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다. 윈도우창을 다루는 객체
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.  문자열

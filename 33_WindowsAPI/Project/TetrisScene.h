@@ -19,6 +19,22 @@ public:
 	/// <summary> 렌더링 순서 : 보드 / Current Mino </summary>
 	virtual void Render(HDC hdc) override;
 
+	/// <param name="arrayPos"> Point( [y], [x] )</param>
+	/// <returns> worldPos(x, y) </returns>
+	static Point ArrayPosToWorldPos(int x, int y);
+
+
+private:
+
+
+	void HandlePlayerInput(float deltaTime);
+
+	void UpdateGameState();
+	void ChangeRowColor(bool isOwnColor);
+	void UpdateMadeRows();
+
+	Mino GenerateMino();
+
 private:
 	
 	GameState gameState = IDLE;
@@ -42,6 +58,7 @@ private:
 	float playerTick	= 0;
 	float rowMadeTick	= 0;
 
+
 	bool leftKeyPressed		= false;
 	bool rightKeyPressed	= false;
 	bool upKeyPressed		= false;
@@ -52,18 +69,14 @@ private:
 	
 	vector<int> madeRows = {};
 
+	Mino nextMino;
 	Mino currentMino;
 
-	/// <param name="arrayPos"> Point( [y], [x] )</param>
-	/// <returns> worldPos(x, y) </returns>
-	Point ArrayPosToWorldPos(int x, int y);
+	int score			= 0;
 
-	void HandlePlayerInput(float deltaTime);
+	TetrisUI tetrisUI;
 
-	void CheckBoardMade();
-	void ChangeRowColor(bool isOwnColor);
-	void UpdateMadeRows();
+	
 
-	Mino GenerateMino();
 
 };
