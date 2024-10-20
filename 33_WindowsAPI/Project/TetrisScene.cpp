@@ -20,7 +20,7 @@ TetrisScene::TetrisScene()
 	currentMino = GenerateMino();
 	nextMino	= GenerateMino();
 	
-	tetrisUI	= TetrisUI();
+	tetrisUI	= new TetrisUI();
 
 	PlaySound(TEXT("TetrisMainTheme.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP | SND_NODEFAULT);
 }
@@ -31,6 +31,8 @@ TetrisScene::~TetrisScene()
 		DeleteObject(pair.second);
 
 	brushMap.clear();
+
+	delete tetrisUI;
 }
 
 void TetrisScene::Update()
@@ -122,9 +124,9 @@ void TetrisScene::Update()
 	UpdateGameState();
 
 	if (gameState == ROW_MADE)
-		tetrisUI.UpdateUIState(score, currentMino, brushMap[currentMino.GetType()], gameState == GAME_OVER);
+		tetrisUI->UpdateUIState(score, currentMino, brushMap[currentMino.GetType()], gameState == GAME_OVER);
 	else
-		tetrisUI.UpdateUIState(score, nextMino, brushMap[nextMino.GetType()], gameState == GAME_OVER);
+		tetrisUI->UpdateUIState(score, nextMino, brushMap[nextMino.GetType()], gameState == GAME_OVER);
 
 	baseTick += deltaTime;
 }
@@ -132,7 +134,7 @@ void TetrisScene::Update()
 void TetrisScene::Render(HDC hdc)
 {
 	// Rendering UI
-	tetrisUI.Render(hdc);
+	tetrisUI->Render(hdc);
 
 	// Rendering board
 	for (int i = 0; i < BOARD_HEIGHT; i++)

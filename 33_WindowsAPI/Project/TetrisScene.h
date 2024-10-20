@@ -83,7 +83,7 @@ private:
 
 	int score			= 0;
 
-	TetrisUI tetrisUI;
+	TetrisUI* tetrisUI = nullptr;
 
 	
 

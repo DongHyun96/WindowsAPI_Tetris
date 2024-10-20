@@ -27,7 +27,7 @@ TetrisUI::TetrisUI()
 
 TetrisUI::~TetrisUI()
 {
-
+	DeleteObject(hFont);
 }
 
 void TetrisUI::Render(HDC hdc)
@@ -44,7 +44,6 @@ void TetrisUI::Render(HDC hdc)
 
 		SetTextColor(hdc, RGB(255, 0, 0));
 		TextOut(hdc, nextMinoBoard.Pos().x, nextMinoBoard.Pos().y + 80, to_wstring(score).c_str(), to_wstring(score).size());
-
 
 		return;
 	}
